@@ -12,11 +12,5 @@ runs:
     - id: call-api
       name: Call API
       uses: docker://curlimages/curl:8.8.0
-      shell: sh
       run: |
-        set -x
-        echo "DNS URL: ${{ cloudbees.api.url }}"
-        echo "Job ID: ${{ job.id }}"
-        echo "Step ID: ${{ step.internal.id }}"
-        echo "Run ID: ${{ cloudbees.run_id }}"
-        curl -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}/${{ inputs.uri }}"
+        curl -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}"

@@ -11,7 +11,7 @@ runs:
   steps:
     - id: call-api
       name: Call API
-      uses: docker://golang:1.20.3-alpine3.17
+      uses: docker://curlimages/curl:8.8.0
       shell: sh
       run: |
         set -x

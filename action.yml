@@ -14,4 +14,4 @@ runs:
       uses: docker://curlimages/curl:8.8.0
       run: |
         echo "URL: ${{ cloudbees.api.url }}${{ inputs.uri }}"
-        curl -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}"
+        curl -v -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}"

@@ -20,4 +20,4 @@ runs:
       uses: docker://golang:1.20.3-alpine3.17
       shell: sh
       run: |
-        echo "Another step"
+        echo "Another step from a new version"

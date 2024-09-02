@@ -14,7 +14,7 @@ runs:
       uses: docker://golang:1.20.3-alpine3.17
       shell: sh
       run: |
-        echo "Another step from a new version"
+        echo "Another step from a new version 2"
     - id: call-api
       name: Call API
       uses: docker://curlimages/curl:8.8.0

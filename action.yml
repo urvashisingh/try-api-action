@@ -9,15 +9,15 @@ inputs:
 runs:
   using: composite
   steps:
-    - id: call-api
-      name: Call API
-      uses: docker://curlimages/curl:8.8.0
-      run: |
-        echo "URL: ${{ cloudbees.api.url }}${{ inputs.uri }}"
-        curl -v -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}"
     - id: echo
       name: Echo something
       uses: docker://golang:1.20.3-alpine3.17
       shell: sh
       run: |
         echo "Another step from a new version"
+    - id: call-api
+      name: Call API
+      uses: docker://curlimages/curl:8.8.0
+      run: |
+        echo "URL: ${{ cloudbees.api.url }}${{ inputs.uri }}"
+        curl -v -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}"

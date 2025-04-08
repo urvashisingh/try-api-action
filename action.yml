@@ -4,12 +4,10 @@ name: try-api
 inputs:
   uri:
     required: true
-    type: string
   http-method:
     required: true
-    type: string
   payload:
-    type: string
+    required: false
     
 runs:
   using: composite

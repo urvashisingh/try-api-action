@@ -4,8 +4,13 @@ name: try-api
 inputs:
   uri:
     required: true
+    type: string
   http-method:
     required: true
+    type: string
+  payload:
+    type: string
+    
 runs:
   using: composite
   steps:
@@ -15,9 +20,18 @@ runs:
       shell: sh
       run: |
         echo "Another step from a new version 2"
-    - id: call-api
-      name: Call API
+    - name: Do get
       uses: docker://curlimages/curl:8.8.0
+      if: inputs.http-method  == 'get'
       run: |
         echo "URL: ${{ cloudbees.api.url }}${{ inputs.uri }}"
         curl -v -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}"
+    - name: Do post
+      uses: docker://curlimages/curl:8.8.0
+      env:
+        PAYLOAD: ${{ inputs.payload }}
+      if: inputs.http-method  == 'post'
+      run: |
+        echo "URL: ${{ cloudbees.api.url }}${{ inputs.uri }}"
+        echo $PAYLOAD > /tmp/data.json
+        curl -v -X POST -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}" -d @/tmp/data.json    

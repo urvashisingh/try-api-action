@@ -32,4 +32,4 @@ runs:
       run: |
         echo "URL: ${{ cloudbees.api.url }}${{ inputs.uri }}"
         echo $PAYLOAD > /tmp/data.json
-        curl -kv -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}" -d @/tmp/data.json    
+        curl --insecure -H "Authorization: Bearer ${{ cloudbees.api.token }}" "${{ cloudbees.api.url }}${{ inputs.uri }}" -d @/tmp/data.json    
